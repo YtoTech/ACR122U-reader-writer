@@ -91,8 +91,8 @@ public class Acr122Manager {
         acr122.open();
         
         acr122.listen(listener);
-        System.out.println("Press ENTER to exit");
-        System.in.read();
+        //System.out.println("Press ENTER to exit");
+        //System.in.read();
         
         acr122.close();
     }
