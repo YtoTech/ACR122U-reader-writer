@@ -93,8 +93,9 @@ public class Acr122Manager {
         try {
             acr122 = new Acr122Device();
         } catch (RuntimeException re) {
-            System.out.println("No ACR122 reader found.");
-            return;
+            throw re;
+            // System.out.println("No ACR122 reader found.");
+            // return;
         }
         acr122.open();
         
