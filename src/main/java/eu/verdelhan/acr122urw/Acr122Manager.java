@@ -31,6 +31,7 @@ import javax.smartcardio.CardException;
 import org.nfctools.mf.MfCardListener;
 import org.nfctools.mf.MfReaderWriter;
 import org.nfctools.mf.card.MfCard;
+import org.nfctools.utils.CardTerminalUtils;
 
 /**
  * Entry point of the program.
@@ -57,6 +58,10 @@ public class Acr122Manager {
             case "-w":
             case "--write":
                 writeToCards(args);
+                break;
+            case "-l":
+            case "--list":
+                listReaders(args);
                 break;
             case "-h":
             case "--help":
@@ -128,6 +133,14 @@ public class Acr122Manager {
         
         // Start listening
         listen(listener);
+    }
+    
+    
+    /**
+     * List available readers.
+     */
+    private static void listReaders(String... args) throws IOException {
+        System.out.println(CardTerminalUtils.getAvailableTerminals());
     }
     
     /**
