@@ -42,7 +42,9 @@ public class Acr122Device extends AcsTerminal {
      * Constructor.
      */
     public Acr122Device() {
-        CardTerminal terminal = CardTerminalUtils.getTerminalByName("ACR122");
+        // TODO Make the reader name configurable.
+        CardTerminal terminal = CardTerminalUtils.getTerminalByName("CL Reader 00000000000030A9 0");
+        // CardTerminal terminal = CardTerminalUtils.getTerminalByName("ACR122");
         setCardTerminal(terminal);
         readerWriter = new Acr122ReaderWriter(this);
     }
