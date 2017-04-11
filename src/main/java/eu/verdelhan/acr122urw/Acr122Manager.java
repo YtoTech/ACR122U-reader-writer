@@ -31,7 +31,10 @@ import javax.smartcardio.CardException;
 import org.nfctools.mf.MfCardListener;
 import org.nfctools.mf.MfReaderWriter;
 import org.nfctools.mf.card.MfCard;
-import org.nfctools.utils.CardTerminalUtils;
+
+import javax.smartcardio.CardException;
+import javax.smartcardio.CardTerminal;
+import javax.smartcardio.TerminalFactory;
 
 /**
  * Entry point of the program.
@@ -140,8 +143,26 @@ public class Acr122Manager {
      * List available readers.
      */
     private static void listReaders(String... args) throws IOException {
-        System.out.println(CardTerminalUtils.getAvailableTerminals());
+        System.out.println(getAvailableTerminals());
     }
+    
+    private static String getAvailableTerminals() {
+		StringBuilder sb = new StringBuilder();
+		TerminalFactory terminalFactory = TerminalFactory.getDefault();
+
+		try {
+			List<CardTerminal> terminals = terminalFactory.terminals().list();
+			for (CardTerminal terminal : terminals) {
+				if (sb.length() != 0) {
+					sb.append(", ");
+				}
+				sb.append(terminal.getName());
+			}
+		}
+		catch (CardException e) {
+		}
+		return sb.toString();
+	}
     
     /**
      * Writes to cards.
